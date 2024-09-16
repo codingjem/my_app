@@ -24,7 +24,7 @@ const LoginPage = () => {
                         })
                     }
                     onSubmit={
-                        async ( values, { setSubmitting, setErrors, resetForm } ) => {
+                        async (values, { setSubmitting, setErrors, resetForm }) => {
                             
                         }
                     }
@@ -47,7 +47,7 @@ const LoginPage = () => {
                 </Formik>
                 <p>
                     New here?
-                    <a className="form-links" onClick={ () => navigate("/signup") }>
+                    <a className="form-links" onClick={() => navigate("/signup")}>
                         Sign Up now
                     </a>
                 </p>
