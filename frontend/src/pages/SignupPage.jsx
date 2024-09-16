@@ -3,9 +3,12 @@ import "./SignupPage.css";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import MyTextInput from "../components/input_fields/MyTextInput";
+import { useRegisterUserMutation } from "../services/userApiSlice";
 
 const SignupPage = () => {
+    const [registerUser, { data, error, isLoading }] = useRegisterUserMutation();
     const navigate = useNavigate();
+
     return (
         <div id="signup">
             <div id="signup-form">
@@ -30,9 +33,12 @@ const SignupPage = () => {
                     onSubmit={
                         async (values, { setSubmitting, setErrors, resetForm }) => {
                             try {
-
+                                await registerUser(values).unwrap();
                             } catch (err) {
-
+                                setErrors(err.data);
+                                console.log("SignUp Errors", err);
+                            } finally {
+                                setSubmitting(false);
                             }
                         }
                     }

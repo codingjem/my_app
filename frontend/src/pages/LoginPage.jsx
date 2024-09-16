@@ -4,9 +4,11 @@ import "./LoginPage.css";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import MyTextInput from "../components/input_fields/MyTextInput";
+import { useLoginUserMutation } from "../services/userApiSlice";
 
 
 const LoginPage = () => {
+    const [loginUser, { data, error, isLoading }] = useLoginUserMutation();
     const navigate = useNavigate();
 
     return (
@@ -25,7 +27,17 @@ const LoginPage = () => {
                     }
                     onSubmit={
                         async (values, { setSubmitting, setErrors, resetForm }) => {
-                            
+                            try {
+                                // User data fetched from backend
+                                const data = await loginUser(values).unwrap();
+                                // Go to home page
+                                navigate("/home");
+                            } catch (err) {
+                                console.log("Login Error", err);
+                                setErrors(err.data);
+                            } finally {
+                                setSubmitting(false);
+                            }
                         }
                     }
                 >
