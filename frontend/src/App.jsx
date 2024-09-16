@@ -4,12 +4,13 @@ import {
     Route,
     Navigate,
 } from "react-router-dom";
+import HomePage from "./pages/HomePage";
 
 function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/" />
+                <Route path="/" element={ <HomePage/> } />
                 <Route path="/login" />
                 <Route path="/signup" />
                 <Route path="/home" />
