@@ -3,14 +3,17 @@ import "./SignupPage.css";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import MyTextInput from "../components/input_fields/MyTextInput";
+import Header from "../components/Header";
 import { useRegisterUserMutation } from "../services/userApiSlice";
 
 const SignupPage = () => {
-    const [registerUser, { data, error, isLoading }] = useRegisterUserMutation();
+    const [registerUser, { data, error, isLoading }] =
+        useRegisterUserMutation();
     const navigate = useNavigate();
 
     return (
         <div id="signup">
+            <Header />
             <div id="signup-form">
                 <h1>Sign Up</h1>
                 <Formik
@@ -21,30 +24,42 @@ const SignupPage = () => {
                         password: "",
                         confirmPassword: "",
                     }}
-                    validationSchema={
-                        Yup.object({
-                            firstname: Yup.string().max(20, "Must be 20 characters or less").required("First Name is required"),
-                            lastname: Yup.string().max(20, "Must be 20 characters or less").required("Last Name is required"),
-                            email: Yup.string().email("Invalid email address").required("Email is required"),
-                            password: Yup.string().min(8, "Password must be at least 8 characters").required("Password is required"),
-                            confirmPassword: Yup.string().oneOf([Yup.ref("Password")], "Password does not match").required("Confirmation password is required"),
-                        })
-                    }
-                    onSubmit={
-                        async (values, { setSubmitting, setErrors, resetForm }) => {
-                            try {
-                                await registerUser(values).unwrap();
-                            } catch (err) {
-                                setErrors(err.data);
-                                console.log("SignUp Errors", err);
-                            } finally {
-                                setSubmitting(false);
-                            }
+                    validationSchema={Yup.object({
+                        firstname: Yup.string()
+                            .max(20, "Must be 20 characters or less")
+                            .required("First Name is required"),
+                        lastname: Yup.string()
+                            .max(20, "Must be 20 characters or less")
+                            .required("Last Name is required"),
+                        email: Yup.string()
+                            .email("Invalid email address")
+                            .required("Email is required"),
+                        password: Yup.string()
+                            .min(8, "Password must be at least 8 characters")
+                            .required("Password is required"),
+                        confirmPassword: Yup.string()
+                            .oneOf(
+                                [Yup.ref("Password")],
+                                "Password does not match"
+                            )
+                            .required("Confirmation password is required"),
+                    })}
+                    onSubmit={async (
+                        values,
+                        { setSubmitting, setErrors, resetForm }
+                    ) => {
+                        try {
+                            await registerUser(values).unwrap();
+                        } catch (err) {
+                            setErrors(err.data);
+                            console.log("SignUp Errors", err);
+                        } finally {
+                            setSubmitting(false);
                         }
-                    }
+                    }}
                 >
                     <Form className="signup-form">
-                    <MyTextInput
+                        <MyTextInput
                             name="firstname"
                             type="text"
                             placeholder="First Name"
@@ -76,7 +91,10 @@ const SignupPage = () => {
                 </Formik>
                 <p>
                     Already have an account?
-                    <a className="form-links" onClick={() => navigate("/login")}>
+                    <a
+                        className="form-links"
+                        onClick={() => navigate("/login")}
+                    >
                         Login now
                     </a>
                 </p>
