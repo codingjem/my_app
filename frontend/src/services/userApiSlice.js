@@ -1,8 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+const baseUrl = import.meta.env.VITE_BASE_URL;
 
 export const userApiSlice = createApi({
     reducerPath: "user",
-    baseQuery: fetchBaseQuery({ baseUrl: "" }),
+    baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
     endpoints: (builder) => ({
         registerUser: builder.mutation({
             query: (newUser) => ({

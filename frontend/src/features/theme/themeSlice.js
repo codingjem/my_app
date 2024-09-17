@@ -8,6 +8,7 @@ const themeSlice = createSlice({
         toggleTheme: (state) => {
             state.darkMode = !state.darkMode;
             localStorage.setItem("darkMode", state.darkMode);
+            updateRootColors(state.darkMode);
         },
     },
 });

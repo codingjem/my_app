@@ -2,7 +2,6 @@ import React from "react";
 import "./DarkModeBtn.css";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from "../features/theme/themeSlice";
-
 import { FaMoon, FaSun } from "react-icons/fa";
 
 const DarkModeBtn = () => {
