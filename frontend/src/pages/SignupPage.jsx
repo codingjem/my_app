@@ -39,7 +39,7 @@ const SignupPage = () => {
                             .required("Password is required"),
                         confirmPassword: Yup.string()
                             .oneOf(
-                                [Yup.ref("Password")],
+                                [Yup.ref("password")],
                                 "Password does not match"
                             )
                             .required("Confirmation password is required"),
