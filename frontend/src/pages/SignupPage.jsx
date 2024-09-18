@@ -24,26 +24,15 @@ const SignupPage = () => {
                         password: "",
                         confirmPassword: "",
                     }}
-                    validationSchema={Yup.object({
-                        firstname: Yup.string()
-                            .max(20, "Must be 20 characters or less")
-                            .required("First Name is required"),
-                        lastname: Yup.string()
-                            .max(20, "Must be 20 characters or less")
-                            .required("Last Name is required"),
-                        email: Yup.string()
-                            .email("Invalid email address")
-                            .required("Email is required"),
-                        password: Yup.string()
-                            .min(8, "Password must be at least 8 characters")
-                            .required("Password is required"),
-                        confirmPassword: Yup.string()
-                            .oneOf(
-                                [Yup.ref("password")],
-                                "Password does not match"
-                            )
-                            .required("Confirmation password is required"),
-                    })}
+                    validationSchema={
+                        Yup.object({
+                        firstname: Yup.string().max(20, "Must be 20 characters or less").required("First Name is required"),
+                        lastname: Yup.string().max(20, "Must be 20 characters or less").required("Last Name is required"),
+                        email: Yup.string().email("Invalid email address").required("Email is required"),
+                        password: Yup.string().min(8, "Password must be at least 8 characters").required("Password is required"),
+                        confirmPassword: Yup.string().oneOf([Yup.ref("password")], "Password does not match").required("Confirmation password is required"),
+                        })
+                    }
                     onSubmit={async (
                         values,
                         { setSubmitting, setErrors, resetForm }
@@ -91,10 +80,7 @@ const SignupPage = () => {
                 </Formik>
                 <p>
                     Already have an account?
-                    <a
-                        className="form-links"
-                        onClick={() => navigate("/login")}
-                    >
+                    <a className="form-links" onClick={() => navigate("/login")}>
                         Login now
                     </a>
                 </p>
@@ -104,3 +90,5 @@ const SignupPage = () => {
 };
 
 export default SignupPage;
+
+// To check backend validations set validationSchema to undefined.

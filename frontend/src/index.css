@@ -23,6 +23,7 @@ body {
     text-decoration: underline;
     color: var(--form-links-color);
     cursor: pointer;
+    padding-left: 5px;
 }
 .inline-block {
     display: inline-block;

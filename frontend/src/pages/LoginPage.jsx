@@ -18,18 +18,13 @@ const LoginPage = () => {
                 <h1>Log In</h1>
                 <Formik
                     initialValues={{ email: "", password: "" }}
-                    validationSchema={Yup.object({
-                        email: Yup.string()
-                            .email("Invalid Email Address")
-                            .required("Email is required"),
-                        password: Yup.string()
-                            .min(8, "Password must be at least 8 characters")
-                            .required("Password is required"),
-                    })}
-                    onSubmit={async (
-                        values,
-                        { setSubmitting, setErrors, resetForm }
-                    ) => {
+                    validationSchema={
+                        Yup.object({
+                            email: Yup.string().email("Invalid Email Address").required("Email is required"),
+                            password: Yup.string().min(8, "Password must be at least 8 characters").required("Password is required"),
+                        })
+                    }
+                    onSubmit={async (values, { setSubmitting, setErrors, resetForm }) => {
                         try {
                             // User data fetched from backend
                             const data = await loginUser(values).unwrap();
@@ -61,10 +56,7 @@ const LoginPage = () => {
                 </Formik>
                 <p>
                     New here?
-                    <a
-                        className="form-links"
-                        onClick={() => navigate("/signup")}
-                    >
+                    <a className="form-links" onClick={() => navigate("/signup")}>
                         Sign Up now
                     </a>
                 </p>
@@ -74,3 +66,5 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
+// To check backend validations set validationSchema to undefined.
