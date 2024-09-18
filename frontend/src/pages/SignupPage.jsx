@@ -41,7 +41,7 @@ const SignupPage = () => {
                             await registerUser(values).unwrap();
                         } catch (err) {
                             setErrors(err.data);
-                            console.log("SignUp Errors", err);
+                            console.log("SignUp Errors", err.data);
                         } finally {
                             setSubmitting(false);
                         }
@@ -84,6 +84,7 @@ const SignupPage = () => {
                         Login now
                     </a>
                 </p>
+                { data && <div>{data.message}</div> }
             </div>
         </div>
     );

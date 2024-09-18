@@ -11,6 +11,10 @@ const LoginPage = () => {
     const [loginUser, { data, error, isLoading }] = useLoginUserMutation();
     const navigate = useNavigate();
 
+    if (data) {
+        console.log("BACKEND REGISTER, data");
+    }
+
     return (
         <div id="login">
             <Header />
