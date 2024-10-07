@@ -1,18 +1,21 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import "./LoginPage.css";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import MyTextInput from "../components/input_fields/MyTextInput";
 import Header from "../components/Header";
 import { useLoginUserMutation } from "../services/userApiSlice";
+import { login } from "../features/auth/authSlice";
 
 const LoginPage = () => {
     const [loginUser, { data, error, isLoading }] = useLoginUserMutation();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     if (data) {
-        console.log("BACKEND REGISTER, data");
+        console.log("BACKEND LOGGED IN", data);
     }
 
     return (
@@ -32,6 +35,7 @@ const LoginPage = () => {
                         try {
                             // User data fetched from backend
                             const data = await loginUser(values).unwrap();
+                            dispatch(login(data));
                             // Go to home page
                             navigate("/home");
                         } catch (err) {

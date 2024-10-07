@@ -4,12 +4,13 @@ import {
     Route,
     Navigate,
 } from "react-router-dom";
+import { useSelector } from "react-redux";
 import HomePage from "./pages/HomePage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 
 function App() {
-    const isAuthenticated = false;
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     return (
         <Router>
             <Routes>
