@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
 import "./HomePage.css";
+import Header from "../components/Header";
+import SidePanel from "../components/panels/SidePanel";
+import MainPanel from "../components/panels/MainPanel";
 import { useSelector, useDispatch } from "react-redux";
 import { useCheckTokenMutation,useGetTokenMutation, useLogoutUserMutation } from "../services/userApiSlice";
 import { setAccessToken, logout } from "../features/auth/authSlice";
@@ -50,14 +53,14 @@ const HomePage = () => {
         }
     };
 
-    const handleCheckToken = async (e) => {
-        e.preventDefault();
-        try {
-            await checkToken().unwrap(); // Unwrap resolves promises
-        } catch (err) {
-            console.log(err);
-        }
-    };
+    // const handleCheckToken = async (e) => {
+    //     e.preventDefault();
+    //     try {
+    //         await checkToken().unwrap(); // Unwrap resolves promises
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // };
 
     const handleLogoutUser = async (e) => {
         e?.preventDefault();
@@ -67,7 +70,7 @@ const HomePage = () => {
         } catch (err) {
             console.log(err);
         }
-    }
+    };
 
     // When page reloads, get new access token. 
     // if TOKEN_EXPIRED error detected, send message to get new access token.
@@ -77,29 +80,20 @@ const HomePage = () => {
         }
     }, [accessToken]);
 
-    useEffect(() => {
-        if (checkTokenError?.data && checkTokenError.data.code === "ACCESS_TOKEN_EXPIRED") {
-            handleGetToken(); // Get new token if expired
-        }
-    }, [checkTokenError]);
+    // useEffect(() => {
+    //     if (checkTokenError?.data && checkTokenError.data.code === "ACCESS_TOKEN_EXPIRED") {
+    //         handleGetToken(); // Get new token if expired
+    //     }
+    // }, [checkTokenError]);
     
 
   return (
     <div id="home">
-        {/* Create Panels here  */}
-        {/* Create a button to test if access and refresh tokens are working */}
-        <button onClick={handleCheckToken} disabled={isCheckTokenLoading}>
-            {(isCheckTokenLoading || isGetTokenLoading) ? "Loading..." : "Check Token"}
-        </button>
-        {(isCheckTokenSuccess || isGetTokenSuccess) && <p>Token is valid</p>}
-        {isCheckTokenError && <p>{`${checkTokenError.data.code} ---> ${checkTokenError.data.message}`}</p>}
-        {isGetTokenError && <p>{`${getTokenError.data.code} ---> ${getTokenError.data.message}`}</p>}
-        
-        <button onClick={handleLogoutUser} disabled={isLogoutUserLoading}>
-            Log Out
-        </button>
+        <Header />
+        <SidePanel />
+        <MainPanel />
     </div>
-  )
-}
+  );
+};
 
 export default HomePage;

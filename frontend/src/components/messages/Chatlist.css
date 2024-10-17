@@ -1,0 +1,13 @@
+#chatlist {
+    margin-top: 20px;
+}
+#chatlist div {
+    padding: 15px 10px;
+    border: 1px solid var(--text-color);
+    border-radius: 10px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+#messages-tag {
+    text-align: left;
+}

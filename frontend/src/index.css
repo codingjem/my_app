@@ -28,9 +28,9 @@ body {
 .inline-block {
     display: inline-block;
 }
-#menu-panel,
+#side-panel,
 #main-panel {
-    padding-top: 65px;
+    padding-top: 80px;
 }
 textarea {
     font-size: 16px;
@@ -40,4 +40,19 @@ textarea {
 }
 button {
     background-color: transparent;
+}
+h1 {
+    font-size: 25px;
+    color: var(--text-color);
+    text-align: center;
+}
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--text-color);
+}
+p {
+    color: var(--text-color);
 }

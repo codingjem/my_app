@@ -1,0 +1,19 @@
+#message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    /* background-color: rgb(234, 151, 151); */
+}
+.current-user {
+    text-align: left;
+    color: var(--text-color);
+}
+.unread-messages {
+    color: var(--text-color);
+}
+.chat-icon {
+    font-size: 20p;
+    margin: 10px;
+    color: var(--text-color);
+}

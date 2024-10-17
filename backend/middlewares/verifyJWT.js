@@ -10,12 +10,13 @@ const verifyJWT = (req, res, next) => {
             }
         });
     }
+
     const token = authHeader.split(" ")[1];
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
         if (err) {
             // if token expired
             // log err.name if the error exist!
-            if (err.name === "TokenExpiredError") {
+            if (err && err.name === "TokenExpiredError") {
                 return res.status(403).json({
                     code: "ACCESS_TOKEN_EXPIRED",
                     message: "Your access token has expired",
@@ -27,12 +28,11 @@ const verifyJWT = (req, res, next) => {
                 message: "Your access token is invalid.",
             });
         }
-        // check decoded first
-        console.log("DECODED", decoded);
+        
         req.user = decoded.email;
         next();
-    })
-}
+    });
+};
 
 module.exports = { verifyJWT };
 

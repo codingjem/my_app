@@ -58,14 +58,6 @@ input[type="text"] {
     color: var(--error-message);
     font-size: 14px;
 }
-h1 {
-    font-size: 25px;
-    color: var(--text-color);
-    text-align: center;
-}
-p {
-    color: var(--text-color);
-}
 
 @media (max-width: 700px) {
     #login,

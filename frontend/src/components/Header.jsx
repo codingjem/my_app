@@ -1,6 +1,6 @@
 import React from "react";
 import "./Header.css";
-import DarkModeBtn from "./DarkModeBtn";
+import DarkModeBtn from "./buttons/DarkModeBtn";
 
 const Header = () => {
     return (
