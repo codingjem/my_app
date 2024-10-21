@@ -4,7 +4,7 @@ const baseUrl = import.meta.env.VITE_BASE_URL;
 // getState in Redux Toolkit Query (RTK Query) and useSelector from React-Redux both serve the purpose of accessing the current state, but they are used in different contexts and have slightly different structures.
 
 export const userApiSlice = createApi({
-    reducerPath: "user",
+    reducerPath: "userApi",
     baseQuery: fetchBaseQuery({
         baseUrl: baseUrl,
         credentials: "include", // This ensure cookies are sent
