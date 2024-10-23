@@ -1,23 +1,26 @@
 import React, { useEffect } from "react";
 import "./MessageList.css";
-import { useDispatch, useSelector } from "react-redux";
-import { addMessage } from "../../features/messages/messagesSlice";
+import { useSelector } from "react-redux";
 
 const MessageList = () => {
-    const messages = useSelector((state) => state.messages);
-    const dispatch = useDispatch();
+    const messages = useSelector((state) => state.messages.messageslist);
+    const userId = useSelector((state) => state.auth.user.id);
 
     // Dispatch message everytime a message is sent
     // socket.on("receiveMessage", (message) => {
     //     dispatch(addMessage(message));
     // });
 
+
     return (
-        <div id="message-list">
-            <p>Here's my first message</p>
-            {messages.map((msg, index) => (
-                <p key={index}>{msg}</p>
-            ))}
+        <div>
+            {messages && (
+                messages.map((message, index) => (
+                    <p key={index} className={message.sender_id === userId ? "me" : "notme"}>
+                        {message.content}
+                    </p>
+                ))
+            )}
         </div>
     );
 };

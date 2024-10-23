@@ -4,12 +4,14 @@ import { FaPhone } from "react-icons/fa6";
 import { FaVideo } from "react-icons/fa6";
 import { FaVideoSlash } from "react-icons/fa6";
 import { FaEllipsisVertical } from "react-icons/fa6";
+import { useSelector } from "react-redux";
 
 const MessageHeader = () => {
+    const name = useSelector((state) => state.messages.clickedTab.name);
     return (
         <div id="message-header">
             <a className="current-user">
-                Jerremy <span className="unread-messages">(1)</span>
+                {name}<span className="unread-messages">(1)</span>
             </a>
             <div className="inline-block">
                 <FaPhone className="chat-icon" />
