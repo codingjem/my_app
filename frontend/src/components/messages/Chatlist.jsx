@@ -54,8 +54,9 @@ const Chatlist = () => {
             {chatlist && (
                 chatlist.map((msg, index) => (
                     <div key={index} onClick={(e) => handleGetMessages(e, index)}>
+                        <img src="/images/user.png" alt="User Photo" className="chatlist-photo" />
                         <h2 className="sender-name">{msg.member_one_id === user.id ? msg.member_two : msg.member_one}</h2>
-                        <p>{msg.content}</p>
+                        <p className="chat-preview">{msg.content}</p>
                     </div>
                 ))
             )}

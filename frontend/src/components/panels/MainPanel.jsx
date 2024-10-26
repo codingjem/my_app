@@ -7,7 +7,6 @@ import MessageInput from "../messages/MessageInput";
 const MainPanel = () => {
     return (
         <div id="main-panel">
-            <h1>Messages</h1>
             <MessageHeader />
             <MessageList />
             <MessageInput />

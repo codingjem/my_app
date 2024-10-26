@@ -11,7 +11,10 @@ const MessageHeader = () => {
     return (
         <div id="message-header">
             <a className="current-user">
-                {name}<span className="unread-messages">(1)</span>
+                <img src="/images/user.png" alt="Current User Photo" className="current-user-photo" />
+                <span className="current-user-name">{name}</span>
+                <span className="unread-messages"></span>
+                <span className="online-icon">Offline</span>
             </a>
             <div className="inline-block">
                 <FaPhone className="chat-icon" />

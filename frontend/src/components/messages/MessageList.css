@@ -1,11 +1,48 @@
 #message-list {
     height: 75%;
-    background-color: green;
+    overflow: auto;
 }
-.me {
-    color: green;
-    text-align: end;
+.date-header {
+    color: var(--text-color);
+    text-align: center;
+    opacity: 70%;
+}
+.message-div {
+    display: flex;
+}
+.message-div p:hover .msg-sent-time {
+    opacity: 70%;
+    transition: 0.4s;
+}
+.me-div {
+    justify-content: end;
+}
+.me,
+.notme {
+    width: 75%;
+    display: flex;
+    padding: 10px 30px;
+    margin-top: 10px;
 }
 .notme {
-    color: yellow;
+    flex-direction: row-reverse;
+    justify-content: start;
+}
+.me {
+    justify-content: right;
+}
+.msg {
+    font-size: 20px;
+    max-width: 70%;
+    color: var(--background-color);
+    background-color: var(--text-color);
+    padding: 15px 20px;
+    border-radius: 20px;
+}
+.notme .msg {
+    opacity: 70%;
+}
+.msg-sent-time {
+    padding: 5px 20px;
+    opacity: 0;
 }

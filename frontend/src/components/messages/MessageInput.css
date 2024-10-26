@@ -6,6 +6,7 @@
     position: relative;
 }
 #message-input textarea {
+    font-size: 20px;
     height: 100px;
     width: 100%;
     background-color: transparent;

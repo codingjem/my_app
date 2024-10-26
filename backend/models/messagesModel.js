@@ -52,7 +52,8 @@ const getMessages = async (id) => {
     JOIN 
         users u ON m.sender_id = u.id  -- Join for sender
     WHERE 
-        c.id = ?`;
+        c.id = ?
+    ORDER BY m.create_time`;
     const rows = await db.query(query, [id]);
     return rows;
     console.log("MESSAGES ROWS", rows);
