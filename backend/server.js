@@ -28,3 +28,5 @@ app.use(routes);
 const server = app.listen(8000, () => {
     console.log("Connected at PORT 8000");
 });
+
+require("./socket")(server);

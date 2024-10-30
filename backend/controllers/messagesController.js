@@ -14,6 +14,18 @@ const getChatlist = async (req, res) => {
     const result = await messagesModel.getChatlist(id);
     // console.log("RESULT", result[0], result[1]);
     res.status(200).json({ chatlist: result });
-}
+};
 
-module.exports = { getMessages, getChatlist };
+// controllers for the socket
+const getSocketMessages = async (id) => {
+    const result = await messagesModel.getMessages(id);
+    return { messages: result };
+};
+
+const addSocketMessage = async (data) => {
+    await messagesModel.addMessage(data);
+    const result = await getSocketMessages(data.conversation_id);
+    return result;
+};
+
+module.exports = { getMessages, getChatlist, addSocketMessage, getSocketMessages };

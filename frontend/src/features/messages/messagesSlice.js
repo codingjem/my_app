@@ -17,6 +17,9 @@ const messagesSlice = createSlice({
             console.log("PAYLOAD", action.payload);
             state.chatlist = action.payload.chatlist;
         },
+        updateChatlist: (state, action) => {
+            
+        },
         storeMessages: (state, action) => {
             state.messageslist = action.payload.messages;
         },
@@ -24,6 +27,7 @@ const messagesSlice = createSlice({
             state.clickedTab = action.payload;
         },
         clearMessages: (state, action) => {
+            state.chatlist = [];
             state.messageslist = [];
             state.clickedTab = { index: null, name: "" };
         },

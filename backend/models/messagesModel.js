@@ -34,7 +34,7 @@ const getChatlist = async (id) => {
         )`;
 
     const rows = await db.query(query, [id, id]);
-    // console.log("ROWS", rows);
+    console.log("ROWS", rows);
     return rows;
 };
 
@@ -59,5 +59,11 @@ const getMessages = async (id) => {
     console.log("MESSAGES ROWS", rows);
 };
 
+const addMessage  = async ({ conversation_id, sender_id, content }) => {
+    const query = 
+    `INSERT INTO messages (conversation_id, sender_id, content, create_time) VALUES (?, ?, ?, NOW())`;
+    await db.query(query, [conversation_id, sender_id, content]);
+}; 
 
-module.exports = { getChatlist, getMessages };
+
+module.exports = { getChatlist, getMessages, addMessage };
