@@ -31,7 +31,9 @@ const getChatlist = async (id) => {
             SELECT MAX(create_time) 
             FROM messages 
             WHERE conversation_id = c.id
-        )`;
+        )
+    ORDER BY 
+        m.create_time DESC`;
 
     const rows = await db.query(query, [id, id]);
     console.log("ROWS", rows);

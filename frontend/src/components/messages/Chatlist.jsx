@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useGetMessagesMutation, useGetChatlistMutation } from "../../services/messageApiSlice";
 import { storeChatlist, storeMessages, clickChatlist } from "../../features/messages/messagesSlice";
 import { manageToken } from "../../features/auth/authSlice"; // Import the manageToken thunk
+import socket from "../../socket/clientSocket";
 
 const Chatlist = () => {
     const accessToken = useSelector((state) => state.auth.accessToken);
@@ -21,6 +22,14 @@ const Chatlist = () => {
             dispatch(storeChatlist(response.data));
         }
     };
+
+    // socket connections
+    socket.emit("joinUserRoom", { userId: user.id });
+    
+    socket.on("getSocketChatlist", (data) => {
+        console.log("SOCKET CHATLIST", data);
+        dispatch(storeChatlist(data));
+    });
 
     useEffect(() => {
         const fetchChats = async () => {

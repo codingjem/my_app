@@ -28,4 +28,9 @@ const addSocketMessage = async (data) => {
     return result;
 };
 
-module.exports = { getMessages, getChatlist, addSocketMessage, getSocketMessages };
+const getSocketChatlist = async (id) => {
+    const result = await messagesModel.getChatlist(id);
+    return { chatlist: result };
+};
+
+module.exports = { getMessages, getChatlist, addSocketMessage, getSocketMessages, getSocketChatlist };

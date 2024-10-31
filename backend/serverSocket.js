@@ -13,6 +13,12 @@ module.exports = (server) => {
 
     io.on("connection", (socket) => {
         console.log("A user connected", socket.id);
+
+        // Store user in a unique room based on their userId
+        socket.on("joinUserRoom", ({ userId }) => {
+            socket.join(userId); // Join room for individual user
+            console.log(`User ${userId} joined their room`);
+        });
         // Handle active chatrooms
         socket.on("joinChatroom", ({ chatId, userId }) => {
             socket.join(chatId);
@@ -28,7 +34,14 @@ module.exports = (server) => {
             // send the updated messages to frontend
             io.to(data.conversation_id).emit("receiveMessages", result);
         });
+        socket.on("updateChatlist", async ({ senderId, receiverId }) => {
+            const senderResult = await messagesController.getSocketChatlist(senderId);
+            const receiverResult = await messagesController.getSocketChatlist(receiverId);
 
+            // Emit updated chatlists to both sender and receiver rooms
+            io.to(senderId).emit("getSocketChatlist", senderResult);
+            io.to(receiverId).emit("getSocketChatlist", receiverResult);
+        });
         socket.on("disconnect", () => {
             console.log("A user disconnected", socket.id);
         });

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./MessageList.css";
 import { useSelector } from "react-redux";
 
@@ -6,10 +6,20 @@ const MessageList = () => {
     const messages = useSelector((state) => state.messages.messageslist);
     const userId = useSelector((state) => state.auth.user.id);
 
+    const chatBoxRef = useRef(null);
+
+    useEffect(() => {
+        // Instantly set the scroll position to the bottom
+        const chatBox = chatBoxRef.current;
+        if (chatBox) {
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    }, [messages]);
+
     let lastDate = "";
 
     return (
-        <div id="message-list">
+        <div id="message-list" ref={chatBoxRef}>
             {messages && messages.map((message, index) => {
                 const messageDateObj = new Date(message.create_time);
 
@@ -52,19 +62,20 @@ const MessageList = () => {
                         hour12: true
                     });
                 }
-
-                const showDateHeader = messageDate !== lastDate;
-                lastDate = messageDate; // Update lastDate for the next iteration
+                
+                // Update lastDate for the next iteration
+                const showDateHeader = lastDate !== messageDate;
+                lastDate = messageDate;
                 
                 return (
                     <React.Fragment key={index}>
-                        {showDateHeader && <div className="date-header">{messageDate}</div>} 
+                        {showDateHeader && <div className="date-header">{messageDate}</div>}   
                         <div className={message.sender_id === userId ? "message-div me-div" : "message-div"}>
                             <p className={message.sender_id === userId ? "me" : "notme"}>
                                 <span className="msg-sent-time">{formattedTime}</span>
                                 <span className="msg">{message.content}</span>
                             </p>                            
-                        </div>                      
+                        </div>               
                     </React.Fragment>
                 );
             })}
