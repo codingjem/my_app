@@ -1,5 +1,5 @@
 #message-list {
-    height: 75%;
+    flex: 1;
     overflow: auto;
 }
 .date-header {

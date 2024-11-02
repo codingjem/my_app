@@ -28,8 +28,8 @@ body {
 .inline-block {
     display: inline-block;
 }
-#side-panel,
-#main-panel {
+.side-panel,
+.main-panel {
     padding-top: 80px;
 }
 textarea {
@@ -55,4 +55,52 @@ h6 {
 }
 p {
     color: var(--text-color);
+}
+
+@media screen and (max-width: 1079px) {
+    #login-form,
+    #signup-form {
+        border: none;
+    }
+    #home {
+        width: 90vw;
+    }
+    .main-panel {
+        width: 100%;
+    }
+    .side-panel {
+        width: 100%;
+        background-color: var(--background-color);
+        position: absolute;
+        right: 100%;
+        z-index: 100;
+        transition: 0.2s;
+        border: none;
+        padding: 70px 40px 50px 40px;
+    }
+    .menu-icon {
+        display: flex;
+    }
+    .me,
+    .notme {
+        width: 100%;
+    }
+    .open-menu {
+        right: 0;
+    }
+    .close-menu {
+        right: 100%;
+    }
+}
+
+@media (min-width: 1080px) and (max-width: 2000px) {
+    #home {
+        width: 95vw;
+    }
+    .main-panel {
+        width: 60%;
+    }
+    .side-panel {
+        width: 40%;
+    }
 }

@@ -1,5 +1,7 @@
 #chatlist {
-    margin-top: 20px;
+    flex: 1;
+    margin-top: 40px;
+    overflow: auto;
 }
 #chatlist div {
     padding: 20px 25px;
@@ -19,7 +21,9 @@
     transition: 0.4s;
 }
 #messages-tag {
+    font-size: 22px;
     text-align: left;
+    margin: 20px 0;
 }
 .chatlist-photo {
     width: 50px;
