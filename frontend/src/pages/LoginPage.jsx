@@ -14,10 +14,6 @@ const LoginPage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    if (data) {
-        console.log("BACKEND LOGGED IN", data);
-    }
-
     return (
         <div id="login">
             <Header />
@@ -39,7 +35,6 @@ const LoginPage = () => {
                             // Go to home page
                             navigate("/home");
                         } catch (err) {
-                            console.log("Login Error", err);
                             setErrors(err.data);
                         } finally {
                             setSubmitting(false);
@@ -74,5 +69,4 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
 // To check backend validations set validationSchema to undefined.

@@ -9,9 +9,6 @@ import { useMenu } from "../../contexts/MenuContext";
 const SidePanel = () => {
     const messages = useSelector((state) => state.messages.messageslist);
     const { openMenu } = useMenu();
-    if (openMenu) {
-        
-    }
 
     return (
         <section className={openMenu || !messages ? "side-panel open-menu" : "side-panel close-menu"}>

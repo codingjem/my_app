@@ -7,8 +7,6 @@ header {
     z-index: 1000;
     background-color: var(--background-color);
     padding: 0 8%;
-    /* box-shadow: 10px 15px 20px rgba(255, 255, 255, 0.109); */
-    /* border: 2px dashed yellow; */
 }
 #logo {
     font-size: 20px;

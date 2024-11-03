@@ -21,16 +21,13 @@ const Chatlist = () => {
     const getChats = async () => {
         if (accessToken && user?.id) {
             const response = await getChatlist(user.id);
-            console.log("CHATLIST", response.data);
             dispatch(storeChatlist(response.data));
         }
     };
 
     // socket connections
     socket.emit("joinUserRoom", { userId: user.id });
-    
     socket.on("getSocketChatlist", (data) => {
-        console.log("SOCKET CHATLIST", data);
         dispatch(storeChatlist(data));
     });
 
@@ -51,7 +48,6 @@ const Chatlist = () => {
             await dispatch(manageToken()); // Ensure token is valid before getting messages
             const conversation_id = chatlist[index].id;
             const name = chatlist[index].member_one_id === user.id ? chatlist[index].member_two : chatlist[index].member_one;
-            // console.log("Chat Index", index);
             
             const response = await getMessages(conversation_id);
             dispatch(storeMessages(response.data));

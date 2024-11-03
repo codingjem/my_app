@@ -38,8 +38,8 @@
 }
 .chat-preview {
     color: var(--text-color);
-    height: 20px; /* Set the fixed height */
-    overflow: hidden; /* Hide the overflow text */
-    white-space: nowrap; /* Prevent line breaks */
-    text-overflow: ellipsis; /* Adds "..." at the end */
+    height: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }

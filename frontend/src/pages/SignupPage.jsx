@@ -7,8 +7,7 @@ import Header from "../components/Header";
 import { useRegisterUserMutation } from "../services/userApiSlice";
 
 const SignupPage = () => {
-    const [registerUser, { data, error, isLoading }] =
-        useRegisterUserMutation();
+    const [registerUser, { data, error, isLoading }] = useRegisterUserMutation();
     const navigate = useNavigate();
 
     return (
@@ -33,19 +32,17 @@ const SignupPage = () => {
                         confirmPassword: Yup.string().oneOf([Yup.ref("password")], "Password does not match").required("Confirmation password is required"),
                         })
                     }
-                    onSubmit={async (
-                        values,
-                        { setSubmitting, setErrors, resetForm }
-                    ) => {
-                        try {
-                            await registerUser(values).unwrap();
-                        } catch (err) {
-                            setErrors(err.data);
-                            console.log("SignUp Errors", err.data);
-                        } finally {
-                            setSubmitting(false);
+                    onSubmit={
+                        async (values, { setSubmitting, setErrors, resetForm }) => {
+                            try {
+                                await registerUser(values).unwrap();
+                            } catch (err) {
+                                setErrors(err.data);
+                            } finally {
+                                setSubmitting(false);
+                            }
                         }
-                    }}
+                    }
                 >
                     <Form className="signup-form">
                         <MyTextInput

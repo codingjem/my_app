@@ -31,7 +31,6 @@ input {
 input:focus {
     outline: none;
 }
-
 .submit-btn {
     align-items: center;
     padding: 10px;
@@ -57,11 +56,4 @@ input[type="text"] {
 .error-message {
     color: var(--error-message);
     font-size: 14px;
-}
-
-@media (max-width: 700px) {
-    #login,
-    #signup {
-        width: 350px;
-    }
 }

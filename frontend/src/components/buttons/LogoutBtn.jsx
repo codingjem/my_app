@@ -1,9 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./LogoutBtn.css";
-import { useSelector, useDispatch } from "react-redux";
-import { useLogoutUserMutation } from "../../services/userApiSlice";
-import { logout } from "../../features/auth/authSlice";
-import { clearMessages } from "../../features/messages/messagesSlice";
+import { useDispatch } from "react-redux";
 import { logoutUserThunk } from "../../features/auth/authSlice";
 
 const LogoutBtn = () => {
