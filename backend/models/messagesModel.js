@@ -36,7 +36,6 @@ const getChatlist = async (id) => {
         m.create_time DESC`;
 
     const rows = await db.query(query, [id, id]);
-    console.log("ROWS", rows);
     return rows;
 };
 
@@ -58,7 +57,6 @@ const getMessages = async (id) => {
     ORDER BY m.create_time`;
     const rows = await db.query(query, [id]);
     return rows;
-    console.log("MESSAGES ROWS", rows);
 };
 
 const addMessage  = async ({ conversation_id, sender_id, content }) => {

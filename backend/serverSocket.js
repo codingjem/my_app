@@ -12,8 +12,6 @@ module.exports = (server) => {
     });
 
     io.on("connection", (socket) => {
-        console.log("A user connected", socket.id);
-
         // Store user in a unique room based on their userId
         socket.on("joinUserRoom", ({ userId }) => {
             socket.join(userId); // Join room for individual user
@@ -24,7 +22,6 @@ module.exports = (server) => {
             socket.join(chatId);
             // console.log("CHATID", chatId);
         });
-
         // Handle incoming messages
         socket.on("sendMessage", async (data) => {
             console.log("MESSAGE SENT", data);

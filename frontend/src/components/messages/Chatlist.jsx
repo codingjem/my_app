@@ -41,8 +41,7 @@ const Chatlist = () => {
         fetchChats();
     }, [accessToken, dispatch]); // Include dispatch in the dependency array
 
-    const handleGetMessages = async (e, index) => {
-        e.preventDefault();
+    const handleGetMessages = async (index) => {
         handleMenuBtn(); // Here we open the mainPanel
         try {
             await dispatch(manageToken()); // Ensure token is valid before getting messages
@@ -62,7 +61,7 @@ const Chatlist = () => {
             <h1 id="messages-tag">Messages</h1>
             {chatlist && (
                 chatlist.map((msg, index) => (
-                    <div key={index} onClick={(e) => handleGetMessages(e, index)}>
+                    <div key={index} onClick={(e) => handleGetMessages(index)}>
                         <img src="/images/user.jpg" alt="User Photo" className="chatlist-photo" />
                         <h2 className="sender-name">{msg.member_one_id === user.id ? msg.member_two : msg.member_one}</h2>
                         <p className="chat-preview">{msg.content}</p>

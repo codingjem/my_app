@@ -9,13 +9,13 @@ const MainPanel = () => {
     const messages = useSelector((state) => state.messages.messageslist);
     return (
         <div className="main-panel">
-            {/* { messages.length > 0 &&  */}
+            { messages.length > 0 && 
                 <>
                     <MessageHeader />
                     <MessageList />
                     <MessageInput />
                 </>
-            {/* } */}
+            }
         </div>
     );
 };

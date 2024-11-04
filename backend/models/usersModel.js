@@ -8,7 +8,6 @@ const getAllUsers = async () => {
 
 const findUser = async (email) => {
     const result = await db.query("SELECT * FROM users WHERE email = ?", [email]);
-    console.log(result)
     return { exists: result.length > 0 }
 };
 
