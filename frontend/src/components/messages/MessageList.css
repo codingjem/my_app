@@ -1,10 +1,16 @@
 #message-list {
     flex: 1;
     overflow: auto;
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+#message-list::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
 }
 .date-header {
     color: var(--text-color);
     text-align: center;
+    margin-top: 10px;
     opacity: 70%;
 }
 .message-div {

@@ -15,7 +15,7 @@ const MessageHeader = () => {
                 <span className="unread-messages"></span>
                 <span className="online-icon">Online</span>
             </a>
-            <div className="inline-block">
+            <div className="chat-icon-menu">
                 <FaPhone className="chat-icon" />
                 <FaVideo className="chat-icon" />
                 <FaEllipsisVertical className="chat-icon" />

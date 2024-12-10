@@ -1,2 +1,3 @@
 .prettierignore
 comment.txt
+.DS_Store

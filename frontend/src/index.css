@@ -56,6 +56,52 @@ p {
     color: var(--text-color);
 }
 /* Media Screen */
+
+@media (max-width: 450px) {
+    header {
+        padding: 0 20px;
+    }
+    #signup,
+    #login {
+        height: 100vh;
+        overflow: hidden;
+    }
+    #login-form,
+    #signup-form {
+        padding: 0 60px;
+    }
+    #login-form {
+        margin-top: 250px;
+    }
+    #message-header {
+        padding: 0;
+    }
+    .chat-icon-menu {
+        display: flex;
+    }
+    .chat-icon-menu .chat-icon:nth-child(3) {
+        display: none;
+    }
+    .msg-sent-time {
+        display: none;
+    }
+    .me,
+    .notme {
+        padding: 5px 0;
+    }
+    #message-input {
+        margin-bottom: 0;
+        padding: 0;
+    }
+    #message-input button {
+        bottom: 0;
+    }
+}
+@media (min-width: 451px) and (max-width: 1079px) {
+    .side-panel {
+        padding: 80px 60px 40px 60px;
+    }
+}
 @media screen and (max-width: 1079px) {
     #login-form,
     #signup-form {
@@ -75,7 +121,13 @@ p {
         z-index: 100;
         transition: 0.2s;
         border: none;
-        padding: 70px 40px 50px 40px;
+    }
+    #chatlist {
+        margin-top: 10px;
+    }
+    #chatlist div {
+        border: none;
+        padding: 10px 0;
     }
     .menu-icon {
         display: flex;
