@@ -42,6 +42,14 @@ export const userApiSlice = createApi({
                 body: { id: userId },
             }),
         }),
+        editUser: builder.mutation({
+            query: ({ userId, firstName, lastName }) => ({
+                url: "/editUser",
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: { id: userId, firstName, lastName },
+            }),
+        }),
         // testing "/home" route if it's protected
         getToken: builder.mutation({
             query: () => ({
@@ -62,6 +70,7 @@ export const userApiSlice = createApi({
 export const {
     useRegisterUserMutation,
     useLoginUserMutation,
+    useEditUserMutation,
     useGetTokenMutation,
     useCheckTokenMutation,
     useLogoutUserMutation,

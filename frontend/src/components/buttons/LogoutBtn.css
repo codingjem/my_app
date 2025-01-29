@@ -1,4 +1,7 @@
 .logout-btn {
+    opacity: 60%;
+}
+.small-btn {
     background-color: var(--text-color);
     color: var(--background-color);
     opacity: 60%;

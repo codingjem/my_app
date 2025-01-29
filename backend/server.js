@@ -11,7 +11,7 @@ const app = express();
 // Set up cors options
 const corsOptions = {
     origin: "http://localhost:5173",
-    methods: ["POST", "GET"],
+    methods: ["POST", "GET", "PATCH", "PUT"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true, // Let cookies be sent
 };

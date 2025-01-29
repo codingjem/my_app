@@ -1,4 +1,9 @@
-#profile div {
+#profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#profile span {
     display: flex;
     align-items: center;
 }
