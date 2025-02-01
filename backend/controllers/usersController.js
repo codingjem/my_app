@@ -93,6 +93,13 @@ const loginUser = async (req, res) => {
     }
 };
 
+const editUser = async (req, res) => {
+    const { id, firstname, lastname } = req.body;
+
+    const result = await usersModel.editUser({ id, firstname, lastname });
+    res.status(200).json(result);
+};
+
 const logoutUser = async (req, res) => {
     res.clearCookie("jwt", {
         httpOnly: true,
@@ -120,4 +127,4 @@ const checkErrors = (req, res) => {
     }
 };
 
-module.exports = { registerUser, loginUser, logoutUser };
+module.exports = { registerUser, loginUser, editUser, logoutUser };

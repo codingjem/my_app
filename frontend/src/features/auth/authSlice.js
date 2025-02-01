@@ -34,10 +34,16 @@ const authSlice = createSlice({
         setAccessToken: (state, action) => {
             state.accessToken = action.payload.accessToken;
         },
+        setUserData: (state, action) => {
+            const newData = {...state.user, ...action.payload};
+            state.user = newData;
+
+            localStorage.setItem("currentUser", JSON.stringify(state.user));
+        },
     },
 });
 
-export const { login, logout, setAccessToken } = authSlice.actions;
+export const { login, logout, setAccessToken, setUserData } = authSlice.actions;
 
 // Thunk for logging out the user
 export const logoutUserThunk = () => async (dispatch, getState) => {

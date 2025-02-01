@@ -15,6 +15,7 @@ router.post("/getToken", refreshTokenController.handleRefreshToken);
 router.post("/getMessages", verifyJWT, messagesController.getMessages);
 router.post("/getChatlist", verifyJWT, messagesController.getChatlist);
 router.post("/checkToken", verifyJWT, (req, res) => { res.status(200).json({ message: "Token is VALID!!!" }) });
+router.patch("/editUser", verifyJWT, usersController.editUser);
 router.post("/logoutUser", usersController.logoutUser);
 
 module.exports = router;

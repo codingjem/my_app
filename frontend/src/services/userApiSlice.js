@@ -43,11 +43,11 @@ export const userApiSlice = createApi({
             }),
         }),
         editUser: builder.mutation({
-            query: ({ userId, firstName, lastName }) => ({
+            query: ({ userId, firstname, lastname }) => ({
                 url: "/editUser",
-                method: "POST",
+                method: "PATCH",
                 headers: { "Content-Type": "application/json" },
-                body: { id: userId, firstName, lastName },
+                body: { id: userId, firstname, lastname },
             }),
         }),
         // testing "/home" route if it's protected

@@ -1,11 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./EditProfile.css";
+import { useDispatch } from "react-redux";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import MyTextInput from "./input_fields/MyTextInput";
+import { useEditUserMutation } from "../services/userApiSlice";
+import { manageToken } from "../features/auth/authSlice";
+import { setUserData } from "../features/auth/authSlice";
 
 
 const EditProfile = ({ user }) => {
+    const dispatch = useDispatch();
+    const [editUser, { data, error, isLoading }] = useEditUserMutation();
+
+    if (error) { console.log("EDIT ERROR", error) };
+
+    useEffect(() => {
+        if (data) {
+            dispatch(setUserData(data));
+        };
+    }, [data]);
+
     return (
         <div id="edit-profile">
             <Formik
@@ -19,7 +34,18 @@ const EditProfile = ({ user }) => {
                     lastname: Yup.string().max(20, "Must be 20 characters or less").required("Last Name is required"),
                     })
                 }
-
+                onSubmit={
+                    async (values, { setSubmitting, setErrors, resetForm }) => {
+                        try {
+                            await dispatch(manageToken());
+                            await editUser({...values, userId: user.id }).unwrap();
+                        } catch (err) {
+                            setErrors(err.data);
+                        } finally {
+                            setSubmitting(false);
+                        }
+                    }
+                }
             >
                 {({ handleChange, values }) => (
                     <Form>

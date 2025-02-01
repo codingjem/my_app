@@ -22,4 +22,10 @@ const addUser = async ({ firstname, lastname, email, password }) => {
     return { firstname };
 };
 
-module.exports = { getAllUsers, findUser, getUser, addUser };
+const editUser = async ({ id, firstname, lastname }) => {
+    const query = "UPDATE users SET firstname = ?, lastname = ?, update_time = NOW() WHERE id = ?";
+    db.query(query, [firstname, lastname, id]);
+    return {firstname, lastname};
+};
+
+module.exports = { getAllUsers, findUser, getUser, addUser, editUser };
